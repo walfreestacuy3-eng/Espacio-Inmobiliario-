@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espacio Inmobiliario Antigua | Vive o Invierte en Antigua Guatemala</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          terracota: { DEFAULT: '#C08261', dark: '#9C6544', light: '#E4C4AC' },
+          carbon: '#1F2937',
+          sage: '#707A5E',
+          crema: '#FBF8F4',
+          niebla: '#F9FAFB',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background:#FBF8F4; }
+  .font-display { font-family: 'Fraunces', serif; }
+
+  /* Signature element: colonial arch frame, echoing Antigua's iconic stone archways */
+  .arch-frame {
+    border-top-left-radius: 100% 72px;
+    border-top-right-radius: 100% 72px;
+    overflow: hidden;
+    position: relative;
+  }
+  @media (max-width: 640px) {
+    .arch-frame { border-top-left-radius: 100% 48px; border-top-right-radius: 100% 48px; }
+  }
+
+  .arch-divider { height: 64px; }
+
+  #navbar { transition: background-color .4s ease, box-shadow .4s ease, padding .4s ease; }
+  #navbar.scrolled { background-color: rgba(251,248,244,0.97); box-shadow: 0 1px 0 rgba(31,41,55,0.08); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0;
+    background: #C08261; transition: width .3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .btn-terracota {
+    background-color: #C08261;
+  }
+  .btn-terracota:hover { background-color: #9C6544; }
+
+  .card-lift { transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s ease; }
+  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(31,41,55,0.25); }
+
+  .fade-up { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-lift, .fade-up, #navbar, .nav-link::after { transition: none !important; }
+    .fade-up { opacity: 1; transform: none; }
+  }
+
+  input:focus, textarea:focus, select:focus, a:focus-visible, button:focus-visible {
+    outline: 2px solid #C08261; outline-offset: 2px;
+  }
+
+  .whatsapp-float {
+    box-shadow: 0 10px 30px -8px rgba(31,41,55,0.4);
+  }
+
+  #toast { transition: transform .5s cubic-bezier(.2,.8,.3,1), opacity .5s ease; }
+</style>
+</head>
+
+<body class="text-carbon antialiased">
+
+<!-- ===================== NAVBAR ===================== -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
+    <a href="#inicio" class="flex items-center gap-3">
+      <span class="w-10 h-10 rounded-full bg-terracota text-white flex items-center justify-center font-display font-semibold text-lg">EA</span>
+      <span class="font-display text-lg sm:text-xl tracking-wide leading-tight">
+        Espacio Inmobiliario<br class="hidden sm:block"> <span class="text-terracota-dark">Antigua</span>
+      </span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-9 font-body text-sm tracking-wide">
+      <a href="#inicio" class="nav-link">Inicio</a>
+      <a href="#propiedades" class="nav-link">Propiedades</a>
+      <a href="#nosotros" class="nav-link">Nosotros</a>
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </div>
+
+    <a href="#contacto" class="hidden md:inline-block btn-terracota text-white text-sm px-5 py-2.5 rounded-full font-medium">Contáctanos</a>
+
+    <button id="menuBtn" aria-label="Abrir menú" class="md:hidden text-2xl text-carbon">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-crema border-t border-carbon/10 px-6 py-6 flex flex-col gap-5 font-body">
+    <a href="#inicio" class="nav-link-mobile">Inicio</a>
+    <a href="#propiedades" class="nav-link-mobile">Propiedades</a>
+    <a href="#nosotros" class="nav-link-mobile">Nosotros</a>
+    <a href="#servicios" class="nav-link-mobile">Servicios</a>
+    <a href="#contacto" class="nav-link-mobile">Contacto</a>
+    <a href="#contacto" class="btn-terracota text-white text-center px-5 py-3 rounded-full font-medium">Contáctanos</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="inicio" class="relative">
+  <div class="relative h-[92vh] min-h-[560px] w-full">
+    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1800&q=80"
+         alt="Casa colonial de lujo en Antigua Guatemala con techos de teja y arcos de piedra"
+         class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-carbon/40 to-carbon/20"></div>
+
+    <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 flex flex-col justify-center pt-16">
+      <p class="text-terracota-light tracking-[0.25em] text-xs sm:text-sm font-medium uppercase mb-4 fade-up">Antigua Guatemala · Sacatepéquez</p>
+      <h1 class="font-display text-white text-4xl sm:text-5xl lg:text-6xl leading-[1.08] max-w-3xl fade-up">
+        DONDE TUS SUEÑOS<br> ENCUENTRAN UN HOGAR
+      </h1>
+      <p class="text-white/85 text-base sm:text-lg max-w-xl mt-6 fade-up">
+        Vive o invierte en Antigua Guatemala. Te acompañamos a comprar, vender o rentar propiedades con confianza, claridad y asesoría personalizada.
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating search card -->
+  <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 -mt-16 sm:-mt-14">
+    <form id="searchForm" class="bg-white rounded-2xl shadow-2xl shadow-carbon/20 p-5 sm:p-7 grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div class="sm:col-span-1">
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Operación</label>
+        <select class="w-full border border-carbon/15 rounded-lg px-3 py-2.5 bg-niebla text-sm">
+          <option>Venta</option>
+          <option>Renta</option>
+        </select>
+      </div>
+      <div class="sm:col-span-1">
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Tipo de propiedad</label>
+        <select class="w-full border border-carbon/15 rounded-lg px-3 py-2.5 bg-niebla text-sm">
+          <option>Casa</option>
+          <option>Terreno</option>
+          <option>Loft</option>
+        </select>
+      </div>
+      <div class="sm:col-span-1">
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Zona</label>
+        <input type="text" placeholder="Antigua, Jocotenango, Alotenango..." class="w-full border border-carbon/15 rounded-lg px-3 py-2.5 bg-niebla text-sm placeholder:text-carbon/40">
+      </div>
+      <div class="sm:col-span-1 flex items-end">
+        <button type="submit" class="btn-terracota w-full text-white rounded-lg py-2.5 font-medium text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-magnifying-glass"></i> Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== PROPIEDADES DESTACADAS ===================== -->
+<section id="propiedades" class="max-w-7xl mx-auto px-5 sm:px-8 pt-28 sm:pt-32 pb-20">
+  <div class="max-w-2xl mb-14 fade-up">
+    <p class="text-terracota-dark tracking-[0.2em] text-xs font-medium uppercase mb-3">Propiedades destacadas</p>
+    <h2 class="font-display text-3xl sm:text-4xl leading-tight">Selección curada en el corazón de Sacatepéquez</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Tarjeta 1 -->
+    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
+      <div class="relative arch-frame h-64">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a36a0e?auto=format&fit=crop&w=900&q=80"
+             alt="Casa de lujo en Condominio Bella Vista, Jocotenango" class="w-full h-full object-cover">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-2xl mb-1">USD $985,000</p>
+        <h3 class="font-medium text-lg mb-3 leading-snug">Casa de Lujo en Condominio Bella Vista, Jocotenango</h3>
+        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 475 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tarjeta 2 -->
+    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
+      <div class="relative arch-frame h-64">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80"
+             alt="Casa de esquina en Condado Antigua, Alotenango" class="w-full h-full object-cover">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-2xl mb-1">Q950,000</p>
+        <h3 class="font-medium text-lg mb-3 leading-snug">Casa de Esquina en Condado Antigua, Alotenango</h3>
+        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 80 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tarjeta 3 -->
+    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
+      <div class="relative arch-frame h-64">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=80"
+             alt="Residencia exclusiva en Hacienda San Juan, Alotenango con vista al volcán" class="w-full h-full object-cover">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-2xl mb-1">USD $350,000</p>
+        <h3 class="font-medium text-lg mb-3 leading-snug">Exclusiva Residencia en Hacienda San Juan, Alotenango</h3>
+        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3.5 Baños</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== SOBRE NOSOTROS / SERVICIOS ===================== -->
+<section id="nosotros" class="bg-white py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="fade-up">
+      <p class="text-terracota-dark tracking-[0.2em] text-xs font-medium uppercase mb-3">Sobre nosotros</p>
+      <h2 class="font-display text-3xl sm:text-4xl leading-tight mb-6">Asesoría local, de confianza, en cada etapa</h2>
+      <p class="text-carbon/75 leading-relaxed mb-8">
+        En Espacio Inmobiliario Antigua conocemos cada calle empedrada y cada condominio de Sacatepéquez. Acompañamos a familias e inversionistas en la compra, venta y renta de propiedades, y también damos seguimiento a proyectos de construcción y remodelación, cuidando el estilo colonial que hace único a este lugar.
+      </p>
+      <div id="servicios" class="grid grid-cols-2 gap-6">
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-key text-terracota text-lg mt-1"></i>
+          <div><p class="font-medium">Compra y Venta</p><p class="text-sm text-carbon/60">Procesos claros y acompañados</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-house-chimney text-terracota text-lg mt-1"></i>
+          <div><p class="font-medium">Renta</p><p class="text-sm text-carbon/60">Propiedades verificadas</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-trowel-bricks text-terracota text-lg mt-1"></i>
+          <div><p class="font-medium">Construcción</p><p class="text-sm text-carbon/60">Proyectos a la medida</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-paint-roller text-terracota text-lg mt-1"></i>
+          <div><p class="font-medium">Remodelación</p><p class="text-sm text-carbon/60">Respetando el estilo colonial</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-up arch-frame h-80 md:h-[26rem]">
+      <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=80"
+           alt="Interior rústico de una vivienda colonial en Antigua Guatemala" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BANNER ===================== -->
+<section class="bg-carbon py-16">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center fade-up">
+    <h3 class="font-display text-white text-2xl sm:text-3xl leading-snug mb-4">
+      ¿Quieres vender o rentar tu propiedad? Nosotros te ayudamos.
+    </h3>
+    <p class="text-white/70 mb-8">Ahorra tiempo y dinero con un proceso guiado por especialistas de la zona.</p>
+    <a href="#contacto" class="btn-terracota text-white px-8 py-3.5 rounded-full font-medium inline-block">Quiero una asesoría</a>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+    <div class="fade-up">
+      <p class="text-terracota-dark tracking-[0.2em] text-xs font-medium uppercase mb-3">Contacto</p>
+      <h2 class="font-display text-3xl sm:text-4xl leading-tight mb-6">Conversemos sobre tu próxima propiedad</h2>
+      <p class="text-carbon/70 mb-8 max-w-md">Escríbenos y un asesor de Espacio Inmobiliario Antigua te contactará en menos de 24 horas.</p>
+      <ul class="space-y-4 text-carbon/80">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-terracota"></i> +502 5952 8514 · +502 5565 4621</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-terracota"></i> espacio.inmogt@gmail.com</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-terracota"></i> Antigua Guatemala, Sacatepéquez</li>
+      </ul>
+    </div>
+
+    <form id="contactForm" class="fade-up bg-white rounded-2xl shadow-lg shadow-carbon/10 p-6 sm:p-8 space-y-5">
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Nombre</label>
+        <input required type="text" class="w-full border border-carbon/15 rounded-lg px-4 py-3 bg-niebla text-sm" placeholder="Tu nombre completo">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Correo</label>
+        <input required type="email" class="w-full border border-carbon/15 rounded-lg px-4 py-3 bg-niebla text-sm" placeholder="tucorreo@ejemplo.com">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Teléfono</label>
+        <input required type="tel" class="w-full border border-carbon/15 rounded-lg px-4 py-3 bg-niebla text-sm" placeholder="+502 0000 0000">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-carbon/60 mb-2">Mensaje</label>
+        <textarea required rows="4" class="w-full border border-carbon/15 rounded-lg px-4 py-3 bg-niebla text-sm" placeholder="Cuéntanos qué estás buscando..."></textarea>
+      </div>
+      <button type="submit" class="btn-terracota w-full text-white rounded-lg py-3.5 font-medium">Enviar Mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-carbon text-white/80 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-terracota text-white flex items-center justify-center font-display font-semibold">EA</span>
+        <span class="font-display text-white text-lg">Espacio Inmobiliario Antigua</span>
+      </div>
+      <p class="text-sm text-white/60 max-w-xs">Vive o invierte en Antigua Guatemala, con acompañamiento cercano en cada paso.</p>
+    </div>
+    <div>
+      <p class="text-white text-sm font-medium uppercase tracking-wide mb-4">Contacto</p>
+      <ul class="space-y-2 text-sm text-white/60">
+        <li>+502 5952 8514</li>
+        <li>+502 5565 4621</li>
+        <li>espacio.inmogt@gmail.com</li>
+        <li>Antigua Guatemala, Sacatepéquez</li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-white text-sm font-medium uppercase tracking-wide mb-4">Síguenos</p>
+      <div class="flex gap-4 text-xl">
+        <a href="#" aria-label="Facebook" class="hover:text-terracota-light"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram" class="hover:text-terracota-light"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok" class="hover:text-terracota-light"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-white/50 mt-3">@espacio.inmobiliariogt</p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 pt-6 text-center text-xs text-white/40 px-5">
+    © 2026 Espacio Inmobiliario Antigua. Todos los derechos reservados.
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/50259528514?text=Hola%2C%20me%20interesa%20una%20propiedad%20en%20Antigua%20Guatemala"
+   target="_blank" rel="noopener"
+   class="whatsapp-float fixed bottom-6 right-6 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Toast de confirmación -->
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 sm:bottom-8 z-50 translate-y-24 opacity-0 bg-carbon text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 max-w-[90%]">
+  <i class="fa-solid fa-circle-check text-terracota-light text-lg"></i>
+  <span class="text-sm">Gracias, tu mensaje fue enviado. Un asesor te contactará pronto.</span>
+</div>
+
+<script>
+  // Navbar cambia de fondo al hacer scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Menú móvil
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuBtn.innerHTML = isOpen ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-xmark"></i>';
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  // Buscador simulado
+  document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('propiedades').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Formulario de contacto con confirmación elegante
+  const toast = document.getElementById('toast');
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    e.target.reset();
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 4000);
+  });
+
+  // Revelado suave al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
