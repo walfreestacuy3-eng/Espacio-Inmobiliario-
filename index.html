@@ -85,6 +85,21 @@
   }
 
   #toast { transition: transform .5s cubic-bezier(.2,.8,.3,1), opacity .5s ease; }
+
+  .zone-filter-btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(31,41,55,0.15);
+    background: white;
+    color: #1F2937;
+    transition: all .25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .zone-filter-btn:hover { border-color: #C08261; color: #9C6544; }
+  .zone-filter-btn.active { background-color: #C08261; border-color: #C08261; color: white; }
+  #zoneFilters { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
 </style>
 </head>
 
@@ -178,42 +193,52 @@
 
 <!-- ===================== PROPIEDADES DESTACADAS ===================== -->
 <section id="propiedades" class="max-w-7xl mx-auto px-5 sm:px-8 pt-28 sm:pt-32 pb-20">
-  <div class="max-w-2xl mb-14 fade-up">
-    <p class="text-terracota-dark tracking-[0.2em] text-xs font-medium uppercase mb-3">Propiedades destacadas</p>
-    <h2 class="font-display text-3xl sm:text-4xl leading-tight">Selección curada en el corazón de Sacatepéquez</h2>
+  <div class="max-w-2xl mb-8 fade-up">
+    <p class="text-terracota-dark tracking-[0.2em] text-xs font-medium uppercase mb-3">Propiedades</p>
+    <h2 class="font-display text-3xl sm:text-4xl leading-tight">Nuestro catálogo completo en Sacatepéquez y más</h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div id="zoneFilters" class="flex flex-wrap gap-2 mb-10 fade-up">
+    <button class="zone-filter-btn active" data-zona="Todas">Todas (75)</button>
+    <button class="zone-filter-btn" data-zona="Airbnb Monterrico">Airbnb Monterrico (2)</button>
+    <button class="zone-filter-btn" data-zona="Alameda Don Vicente">Alameda Don Vicente (1)</button>
+    <button class="zone-filter-btn" data-zona="Alotenango">Alotenango (2)</button>
+    <button class="zone-filter-btn" data-zona="Antigua Gardens">Antigua Gardens (4)</button>
+    <button class="zone-filter-btn" data-zona="Antigua Guatemala">Antigua Guatemala (4)</button>
+    <button class="zone-filter-btn" data-zona="Antigua Guatemala (Comercial)">Antigua Guatemala (Comercial) (1)</button>
+    <button class="zone-filter-btn" data-zona="Casco Antigua">Casco Antigua (6)</button>
+    <button class="zone-filter-btn" data-zona="Chiquimula">Chiquimula (1)</button>
+    <button class="zone-filter-btn" data-zona="Ciudad Vieja">Ciudad Vieja (1)</button>
+    <button class="zone-filter-btn" data-zona="El Cortijo">El Cortijo (2)</button>
+    <button class="zone-filter-btn" data-zona="Guatemala Ciudad">Guatemala Ciudad (1)</button>
+    <button class="zone-filter-btn" data-zona="Hacienda del Comendador">Hacienda del Comendador (2)</button>
+    <button class="zone-filter-btn" data-zona="Jocotenango">Jocotenango (1)</button>
+    <button class="zone-filter-btn" data-zona="Puerto San José">Puerto San José (2)</button>
+    <button class="zone-filter-btn" data-zona="Rentas">Rentas (17)</button>
+    <button class="zone-filter-btn" data-zona="Res. Hacienda San Juan">Res. Hacienda San Juan (9)</button>
+    <button class="zone-filter-btn" data-zona="San Antonio Aguas Calientes">San Antonio Aguas Calientes (1)</button>
+    <button class="zone-filter-btn" data-zona="San Juan del Obispo">San Juan del Obispo (2)</button>
+    <button class="zone-filter-btn" data-zona="San Miguel Dueñas">San Miguel Dueñas (6)</button>
+    <button class="zone-filter-btn" data-zona="San Pedro Las Huertas">San Pedro Las Huertas (3)</button>
+    <button class="zone-filter-btn" data-zona="Terrenos">Terrenos (7)</button>
+  </div>
 
-    <!-- Tarjeta 1 -->
-    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
+  <p id="resultsCount" class="text-sm text-carbon/50 mb-6"></p>
+
+  <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Alotenango">
       <div class="relative arch-frame h-64">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a36a0e?auto=format&fit=crop&w=900&q=80"
-             alt="Casa de lujo en Condominio Bella Vista, Jocotenango" class="w-full h-full object-cover">
+        <img src="https://lh3.googleusercontent.com/d/11OFOvd2oMmLTKeZYN_A6s2MA1p_DMurq=w900" loading="lazy"
+             alt="Casa de Esquina en Condado Antigua" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
         <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
       </div>
       <div class="p-6">
-        <p class="text-terracota-dark font-display text-2xl mb-1">USD $985,000</p>
-        <h3 class="font-medium text-lg mb-3 leading-snug">Casa de Lujo en Condominio Bella Vista, Jocotenango</h3>
-        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5.5 Baños</span>
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 475 m²</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- Tarjeta 2 -->
-    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
-      <div class="relative arch-frame h-64">
-        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80"
-             alt="Casa de esquina en Condado Antigua, Alotenango" class="w-full h-full object-cover">
-        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
-      </div>
-      <div class="p-6">
-        <p class="text-terracota-dark font-display text-2xl mb-1">Q950,000</p>
-        <h3 class="font-medium text-lg mb-3 leading-snug">Casa de Esquina en Condado Antigua, Alotenango</h3>
-        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q950,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa de Esquina en Condado Antigua</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Alotenango</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de esquina con excelente iluminación y ventilación dentro de un residencial con amenidades: gimnasio, salón de eventos, jardín para mas...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1.5 Baños</span>
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 80 m²</span>
@@ -221,24 +246,1364 @@
       </div>
     </article>
 
-    <!-- Tarjeta 3 -->
-    <article class="fade-up card-lift bg-white rounded-b-2xl overflow-hidden">
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Alotenango">
       <div class="relative arch-frame h-64">
-        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=80"
-             alt="Residencia exclusiva en Hacienda San Juan, Alotenango con vista al volcán" class="w-full h-full object-cover">
-        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+        <img src="https://lh3.googleusercontent.com/d/1gFTW9mcRGBDAFmyl_BEAhedE1YnxkSZP=w900" loading="lazy"
+             alt="Casa de un Nivel en San Juan Alotenango" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
       </div>
       <div class="p-6">
-        <p class="text-terracota-dark font-display text-2xl mb-1">USD $350,000</p>
-        <h3 class="font-medium text-lg mb-3 leading-snug">Exclusiva Residencia en Hacienda San Juan, Alotenango</h3>
-        <div class="flex items-center gap-5 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q900,000 + impuestos</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa de un Nivel en San Juan Alotenango</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Alotenango</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de un nivel en zona tranquila y de fácil acceso, en excelentes condiciones. Sala, cocina y comedor, área de lavandería con pila, parque...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Jocotenango">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1udLCUqSrCmQH3zrBaWjbZhXrFqVwAAJN=w900" loading="lazy"
+             alt="Casa de Lujo en Condominio Bella Vista" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $990,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa de Lujo en Condominio Bella Vista</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Jocotenango</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Amplios ambientes y hermosos acabados. 5 habitaciones cada una con baño privado y walk-in closet, habitación principal con espacio para sala...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 5 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 475 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Guatemala (Comercial)">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1WtbB6K-OAGY3cnFWpWGJFSj2NGKNq6aC=w900" loading="lazy"
+             alt="Local Comercial en C.C. Los Próceres" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q500,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Local Comercial en C.C. Los Próceres</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Guatemala (Comercial)</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Local comercial ubicado en el área de Food Court de C.C. Los Próceres. Se vende completamente equipado: equipo de cocina, mobiliario, mesas ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 174 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1iPTf9q-SJdOTKE6S4Lbf2a03EC_OQAz1=w900" loading="lazy"
+             alt="Casa Colonial Dalia" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Colonial Dalia</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de estilo colonial con acabados premium en condominio privado y exclusivo cerca de Antigua Guatemala. Sala familiar, oficina, jardín ce...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
           <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 252 m² (terreno 9x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1YFvXTBAlOLm7i8xQcGvnumy7-_vjVMXt=w900" loading="lazy"
+             alt="Casa #17" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta / Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Venta USD $330,000 / Renta USD $1,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa #17</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Elegante residencia con espacios amplios y luz natural. Habitación máster con walk-in closet y baño privado, terraza con pérgola y churrasqu...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 250 m² (terreno 9x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1lK6W2qLOvmcAIhtAx2io696cH42O1dx4=w900" loading="lazy"
+             alt="Casa 1" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $320,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa 1</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva de estilo colonial, amplia y luminosa, en residencial exclusivo y tranquilo cerca de plazas comerciales y colegios. Dormitorio má...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 180 m² (terreno 9x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1UojzQaroXYncNIkgkfWuHon9nmSM3ei3=w900" loading="lazy"
+             alt="Casa Magma" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $490,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Magma</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Elegante residencia de estilo moderno con amplitud y luminosidad. Garaje para 4 vehículos (2 techados), amplio jardín, habitación principal ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 320 m² (terreno 10x24m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1fza02UP2wUEB2szYDvu1J7t7b_Eyhe9c=w900" loading="lazy"
+             alt="Casa #12" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 4,500,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa #12</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en San Juan Alotenango dentro de residencial con garita de control de acceso. Sala familiar, balcón en habitaciones, amplio jardín (9x1...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 324 m² + jardín (terreno 18x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1S7dWU_hq_qe1go9kDymb6eKpSx_7l__Q=w900" loading="lazy"
+             alt="Casa Estilo Colonial en Obra Gris" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 3,800,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Estilo Colonial en Obra Gris</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en obra gris con sistema constructivo de concreto armado y mampostería reforzada. Garaje, jardín (cabe piscina), habitación principal c...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 396 m² (terreno 31x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80" loading="lazy"
+             alt="Villa San Juan" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $475,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Villa San Juan</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva en Hacienda San Juan. Primer nivel con habitación y baño privado, sala, comedor, cocina, parqueo y jardín. Segundo nivel con 3 ha...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 294 m² (terreno 10x24m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1ISKGIWZ5pdNxnHy53WS0Gd6qWfZETUGN=w900" loading="lazy"
+             alt="Magnolia" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Magnolia</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva que combina arquitectura colonial con detalles modernos. Habitación principal con walk-in closet y baño privado, 2 habitaciones s...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 233 m² (terreno 9x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Res. Hacienda San Juan">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1a2K03BqiwQCoyPslRikmXHWLVka2PATy=w900" loading="lazy"
+             alt="Villa Bella" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $950,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Villa Bella</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Res. Hacienda San Juan</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de lujo con vista privilegiada a los volcanes en San Juan Alotenango. Sala con chimenea eléctrica, habitación máster con walk-in closet...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 5 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> terreno 27x18m</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1fVNWQc48vcZmhdBRzA4AxYRtdvwkCPsm=w900" loading="lazy"
+             alt="Terreno de Esquina - Portal de Antigua" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno de Esquina - Portal de Antigua</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno de esquina dentro de residencial, frente a la Casa Club, a solo 3 minutos del centro de Antigua Guatemala. Oportunidad difícil de en...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 200 m² (10x20m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1MqZRVsuXN4l_zysv7c_QB7CPd_mfLMNV=w900" loading="lazy"
+             alt="Terreno en Carretera a San Juan del Obispo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno en Carretera a San Juan del Obispo</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno sobre la carretera hacia San Juan del Obispo, en una de las zonas con mayor crecimiento y plusvalía de Antigua Guatemala. Ideal para...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 788 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/10TXlRafLegjD18CSABgOs49qV05DNI9H=w900" loading="lazy"
+             alt="Terreno de Esquina - La Antigua Estancia" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno de Esquina - La Antigua Estancia</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno de esquina en San Miguel Dueñas, dentro de residencial con piscina, club social, parque y áreas verdes, juegos para niños, cancha de...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> terreno de esquina 10x30m</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1j3VkBVG9TXQZwuBA3NzeNju4_ClqQRNE=w900" loading="lazy"
+             alt="Terreno 1 - San Pedro Las Huertas" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno 1 - San Pedro Las Huertas</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno plano en residencial pequeño y exclusivo con encanto colonial: calles empedradas, cableado subterráneo, entorno tranquilo y vista a ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 153.6 m² (9.6x16m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1GzisJK5GEPaM-4GR1tkzsolKJVveT6np=w900" loading="lazy"
+             alt="Terreno 2 - San Pedro Las Huertas (2 disponibles)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno 2 - San Pedro Las Huertas (2 disponibles)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno completamente plano dentro de proyecto residencial exclusivo, a 8 minutos del casco urbano de Antigua Guatemala. Calles empedradas, ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 12m x 30m (2 terrenos iguales disponibles)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Juan del Obispo">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Z11guh3H-dnzSc25anT4kIiy2Mo72tfG=w900" loading="lazy"
+             alt="Terreno con Casa Existente - Vista a Volcanes" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno con Casa Existente - Vista a Volcanes</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Juan del Obispo</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno con gran potencial en San Juan del Obispo. Incluye casa existente de 2 niveles + terraza con vista panorámica a los volcanes. Cuenta...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 3,100 m² (terreno irregular, totalmente circulado)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1YlqaqRYxT-D4Hxx76TdCcq4HCDriT8vG=w900" loading="lazy"
+             alt="Terreno El Panorama" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno El Panorama</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno en El Panorama, Antigua Guatemala, zona tranquila rodeada de naturaleza a pocos minutos del casco histórico. Ideal para construir un...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 300 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Terrenos">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1o0rVjV2iF0dWQNUS6cmqb1-ZRTJe_lFP=w900" loading="lazy"
+             alt="Terreno San Miguel Escobar (10.8 cuerdas)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno San Miguel Escobar (10.8 cuerdas)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Terrenos</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Amplio terreno plano con leve pendiente en San Miguel Escobar, Sacatepéquez. Cuenta con plantación de café y aguacate, acceso vehicular, ser...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 10,676 m² (10.8 cuerdas)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Juan del Obispo">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Sc9zHIP0ZAMKhAFm67j-0LwjPqYsM3DJ=w900" loading="lazy"
+             alt="Residencia de Lujo en Condado del Obispo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $1,350,000 + impuestos</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Residencia de Lujo en Condado del Obispo</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Juan del Obispo</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Residencia de lujo de 4 dormitorios en condominio exclusivo al sur de Antigua Guatemala, a 5 minutos del Calvario. Sala con chimenea y techo...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 534.57 m² (terreno 503.07 m²)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Pedro Las Huertas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1MmoyTeKrkTHNoxPap-xQpMOOGrU6Xezw=w900" loading="lazy"
+             alt="Casa Balcones de San Pedro" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $375,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Balcones de San Pedro</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Pedro Las Huertas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa acogedora con vista 360° a los volcanes, a 8 minutos de Antigua Guatemala, dentro de residencial con seguridad y área recreativa. Habit...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 225 m² (terreno 8x16m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Pedro Las Huertas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/18FoEpG24-LYzUuMgfhq7QFK3wXw3ADXO=w900" loading="lazy"
+             alt="Casa Barrios Coloniales (1 nivel)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Barrios Coloniales (1 nivel)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Pedro Las Huertas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de un nivel con jardín amplio, a 8 minutos del centro de Antigua, cerca de plazas comerciales y supermercados. Garaje para 2 vehículos,...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 70 m² (terreno 13.8x16m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Pedro Las Huertas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1fcAYdti3tsMnunmOJuJwGOu5T-l0pghp=w900" loading="lazy"
+             alt="Casa Altos de las Huertas (Renta)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Altos de las Huertas (Renta)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Pedro Las Huertas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de un nivel en renta, encanto colonial en residencial privado a pocos minutos del centro de Antigua. Sala con chimenea, comedor y cocin...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 145 m² (terreno 13x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1fznfvVDZfBsK-oiagjCV7Eu_Q4Iej-VF=w900" loading="lazy"
+             alt="Casa Comercial en Ciudad Vieja" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q17,000 (negociable a Q15,000)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Comercial en Ciudad Vieja</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa comercial de 3 niveles con terraza y vista panorámica a los tres volcanes. Ideal para oficinas gubernamentales, clínicas médicas, call ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 9.5m x 31m (3 niveles)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1V1jz_ZnBmOE1HOyxvLkDZ1efMDM01QVK=w900" loading="lazy"
+             alt="Casa en Condominio Paseo San Lorenzo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q6,900 (con mantenimiento)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa en Condominio Paseo San Lorenzo</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en renta en entorno seguro y tranquilo, a pocos minutos del centro de Antigua Guatemala. Sala, comedor y cocina integrados, área de lav...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1VZkZW7Dn9IQOK7FPSDNJDGBlF4jDTELO=w900" loading="lazy"
+             alt="Casa Equipada en Barrios Coloniales" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Equipada en Barrios Coloniales</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en renta totalmente equipada, ideal para mudarse sin preocupaciones, en sector tranquilo y accesible. Sala, comedor y cocina integrados...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1tLcTHgYRxe0FEAZU76yfrm-_kJEqQkM1=w900" loading="lazy"
+             alt="Apartamento en Jocotenango Centro" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q4,500</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Apartamento en Jocotenango Centro</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Apartamento en renta, segundo nivel con entrada independiente. Sala, comedor, cocina, patio y lavandería.</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1oCv5ft-s1zsSk1dZzwXIYnY22zqZUd_k=w900" loading="lazy"
+             alt="Casa San Pedro El Alto (Renta)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa San Pedro El Alto (Renta)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en renta dentro de residencial en entorno natural en San Pedro Las Huertas. Dormitorio principal con clóset y baño privado, sala con ch...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1S_Pz5eNiiW66GkJ-qgYcIoxQZgaK7ivb=w900" loading="lazy"
+             alt="Casa Nueva en San Pedro Las Huertas (Renta)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $2,000/mes</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Nueva en San Pedro Las Huertas (Renta)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva en renta dentro de exclusivo residencial, a 8 minutos del centro de Antigua Guatemala. Sala y comedor con chimenea, habitación pr...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1CwQqRoht7mZJG9xR3VP37OEh2ZwAOA0O=w900" loading="lazy"
+             alt="Casa Amueblada en San Pedro El Alto" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Amueblada en San Pedro El Alto</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de un nivel totalmente amueblada en renta, dentro del residencial San Pedro El Alto, a 10 minutos del centro de Antigua Guatemala. Habi...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1uc1-nUBhcrkWA-Vk3ab-jDF_xBkrz3mG=w900" loading="lazy"
+             alt="Casa Cercana a Hotel Santo Domingo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">$5,000 + IVA</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Cercana a Hotel Santo Domingo</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa amplia y elegante en condominio exclusivo cerca de Hotel Santo Domingo, a pocas calles del Parque Central de Antigua. Ideal para Airbnb...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 617 m² (terreno 495 m²)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1SfM_E-QD4-HOlBZ8cuy7ScFiZkRtbV_2=w900" loading="lazy"
+             alt="Local Comercial en Centro de Antigua" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">$2,500 (sin IVA) / $2,800 (con IVA)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Local Comercial en Centro de Antigua</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Local en renta ideal para restaurante, café, oficinas, spa, farmacia, galería de arte, escuela de idiomas o tienda de artesanías. Nivel 1: 2...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 ">
+          
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Q3ZJxjAWMoYZm70Y50wySVrUk3-hBjkZ=w900" loading="lazy"
+             alt="Casa en Condado Antigua, Ciudad Vieja" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q4,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa en Condado Antigua, Ciudad Vieja</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en renta con ambientes cálidos y luz natural. Sala, comedor y cocina integrados, patio y 2 parqueos. Residencial con gimnasio equipado,...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1qyZYkVjdmE2iusUWIsSsHIxjpalsxpkL=w900" loading="lazy"
+             alt="Terreno con Jardines en Santa Inés" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q38,000 mensuales</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno con Jardines en Santa Inés</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno con jardines en Santa Inés del Monte Pulciano, ideal para restaurante, eventos o proyectos al aire libre. Acceso con portón principa...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 15,700 varas² de jardines</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1QD0E16gHFgm1MHEP1XrSWGucRXcLUkpK=w900" loading="lazy"
+             alt="Casa Loft El Monasterio" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $2,100</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Loft El Monasterio</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa tipo loft totalmente equipada, en exclusivo residencial en Antigua Guatemala. Techos de doble altura, jardín con pérgola y búcaro, parq...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1maCzAeotgw0tEQC1R37h_Wsda35i_nlQ=w900" loading="lazy"
+             alt="Casa Amueblada en Condado Antigua" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q6,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Amueblada en Condado Antigua</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa amueblada en renta, en residencial privado sobre RN14, Ciudad Vieja, con excelente acceso hacia Antigua Guatemala. Sala y comedor ilumi...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1.5 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1vf4Bif9CP3qLG6bi8LM0nW2idsuUUvTB=w900" loading="lazy"
+             alt="Local #17 - El Jaulón (100m del Parque Central)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">$1,400 + IVA (mantenimiento Q1,047.85)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Local #17 - El Jaulón (100m del Parque Central)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Local en alquiler a solo 100 metros del Parque Central de Antigua Guatemala. Incluye seguridad, servicio de limpieza, acceso a baños comunes...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 55.15 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1tJNweyBvLRKRig1aNhrcXP8-hsEHmdJj=w900" loading="lazy"
+             alt="Apartamento de 3 Niveles en Ciudad Vieja" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q6,000 + mantenimiento</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Apartamento de 3 Niveles en Ciudad Vieja</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Apartamento de 3 niveles en renta en Ciudad Vieja, Sacatepéquez. Primer nivel con sala, comedor y cocina integrados. Segundo nivel con sala ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/15wFO7guJiuL8CDG6GaGp-7VHT6-GLz2U=w900" loading="lazy"
+             alt="Locales en Plaza Bella Vista, Jocotenango" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Local grande Q8,000 / Local pequeño Q3,200 (mantenimiento incluido)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Locales en Plaza Bella Vista, Jocotenango</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Dos locales comerciales disponibles en segundo nivel de Plaza Bella Vista, Jocotenango. El local grande tiene doble altura y mezzanine, idea...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> Grande 8x13m / Pequeño 5x8m</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Rentas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1KdNxnfKgblL9iDpYPOIR3gwFlr5oIf0H=w900" loading="lazy"
+             alt="Oficina o Clínica en Ciudad Vieja" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q5,000 mensuales</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Oficina o Clínica en Ciudad Vieja</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Rentas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Oficina o clínica en renta, segundo nivel completamente remodelado en Ciudad Vieja. Ideal para oficina administrativa, clínica médica o dent...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 80 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Antonio Aguas Calientes">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1cbAW74jfn_i5HjMvRxSh86gxObFE0RG0=w900" loading="lazy"
+             alt="Casa en San Antonio Aguas Calientes" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 1,100,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa en San Antonio Aguas Calientes</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Antonio Aguas Calientes</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa con jardín con árboles frutales (duraznal y limonar), sala, cocina y comedor, parqueo para 2 vehículos.</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> terreno 12x20m</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1FfyRz8Xd4JkHfunXmBBXAlAVWTtICyMV=w900" loading="lazy"
+             alt="Casa Portal de Las Rosas 2" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $285,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Portal de Las Rosas 2</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en San Miguel Dueñas, ubicación privilegiada en la entrada del residencial. 3 habitaciones todas con baño privado, jardín, área de lava...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 188 m² (terreno 8x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1VmbxQG3_LoBoWObjjJi_b2PrnAafF_32=w900" loading="lazy"
+             alt="Casa Amueblada en Portal de Las Rosas II (Renta)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q4,500 mensual</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Amueblada en Portal de Las Rosas II (Renta)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de un nivel en renta, amueblada con camas, estufa, refrigeradora, TV, sala y comedor para 4 personas. Incluye mantenimiento e internet....</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Tml51RB8majeoO5ZYkaxZ6gLrRKaDzDw=w900" loading="lazy"
+             alt="Casa Colonial Portal de las Rosas II" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $265,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Colonial Portal de las Rosas II</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa colonial en condominio exclusivo. Fachada colonial única, garaje para 1 vehículo, habitación en primer nivel con walk-in closet y baño ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 170 m² (terreno 8x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1QoPlAvJhajQD5mBxv9_jaHVRzaupinf6=w900" loading="lazy"
+             alt="Casa Loft Portal de Las Rosas" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $230,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Loft Portal de Las Rosas</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa moderna estilo loft con diseño abierto y abundante iluminación natural. Habitación principal con walk-in closet y baño privado, sala, c...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 145 m² (terreno 7x14m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1eaUmBIDtOtSf6kH8bG4QHadbxDq0G4Kd=w900" loading="lazy"
+             alt="Casa Portal de las Rosas 1" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $185,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Portal de las Rosas 1</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en San Miguel Dueñas. Primer nivel con sala, comedor, cocina, parqueo techado para 2 vehículos, patio y bodega. Segundo nivel con habit...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 170 m² (terreno 7x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="San Miguel Dueñas">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1CfY8R_MVOjhqUXiP_ej_x1BC5NjTPUuO=w900" loading="lazy"
+             alt="Casa Nueva en La Antigua Estancia" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $235,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Nueva en La Antigua Estancia</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">San Miguel Dueñas</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva de un nivel en La Antigua Estancia, San Miguel Dueñas. Habitación principal con closet, baño privado y salida a jardín. Jardín pr...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 202 m² (terreno 10x30m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Hacienda del Comendador">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1VfSXMWnkhJDzY4E1aNY8MXLK1BBhTCUZ=w900" loading="lazy"
+             alt="Casa P03 - Hacienda del Comendador" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa P03 - Hacienda del Comendador</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Hacienda del Comendador</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en uno de los residenciales más exclusivos de San Miguel Dueñas, a 15 minutos de Antigua Guatemala. Primer nivel con habitación con bañ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 325 m² (terreno 10x21m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Hacienda del Comendador">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1vk7GaTghueTBPY3KGlAAScY0cpT_Qdzq=w900" loading="lazy"
+             alt="Casa Rodrigo Castañeda - Hacienda del Comendador" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $385,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Rodrigo Castañeda - Hacienda del Comendador</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Hacienda del Comendador</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en San Miguel Dueñas. Habitación principal y 2 secundarias, todas con baño privado y closet. Sala y comedor integrados, cocina con lint...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 175 m² (terreno 10x20m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Guatemala Ciudad">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Txy-sh5mUum6_xlso7G9cfSZ41deuTtx=w900" loading="lazy"
+             alt="Apartamento en Zona 10" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $153,000 / GTQ 1,193,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Apartamento en Zona 10</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Guatemala Ciudad</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Apartamento en Zona 10, Ciudad de Guatemala. Sala, comedor y cocina integrados, área de lavandería, 1 parqueo para carro y 1 para motociclet...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 2 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 1 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 46 m²</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Gardens">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1KrHFclHBJNMSwY1f63AUav54Lg91Yd-W=w900" loading="lazy"
+             alt="Casa Los Volcanes" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Los Volcanes</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Gardens</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva con arquitectura colonial y toques modernos, en Residencial Antigua Gardens (3 casas club con piscina, gimnasio y áreas para toda...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 220 m² (terreno 7.5x17m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Gardens">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1BVuJrvKyjeLUfv90rbpcpoYwg1FueZYM=w900" loading="lazy"
+             alt="Casa La Cañada" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $350,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa La Cañada</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Gardens</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva estilo colonial con acabados artesanales hechos a mano. Sala y comedor con chimenea, jardín central con búcaro, habitación princi...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 210 m² (terreno 10x12m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Gardens">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1JdGVCELeUhuDD-HeoYrtf02i5NSNrQ1E=w900" loading="lazy"
+             alt="Casa Moka" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $325,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Moka</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Gardens</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa exclusiva a pocos minutos de Antigua Guatemala. Primer nivel con habitación de visitas, patio central con búcaro y garaje techado. Segu...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 5 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 246 m² (terreno 15x18m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Ciudad Vieja">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1WETrASwCO3FW-yugqxm8A3Vd6zbc1-8X=w900" loading="lazy"
+             alt="Casa Estilo Colonial Moderno (Cocina Gris)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $295,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Estilo Colonial Moderno (Cocina Gris)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Ciudad Vieja</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva estilo colonial moderno en Ciudad Vieja, Sacatepéquez. 3 habitaciones cada una con baño privado, sala y comedor integrados, búcar...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3.5 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 176 m² (terreno 7.5x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Gardens">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1mVh6Lg4S7F1QLRTSgj2eclXquW1Kw6Ao=w900" loading="lazy"
+             alt="Casa 3 Niveles con Terraza" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $230,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa 3 Niveles con Terraza</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Gardens</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa de 3 niveles en Antigua Gardens. Primer nivel con habitación con baño privado, sala con chimenea, cocina equipada con línea blanca. Seg...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 226 m² (terreno 7.5x15m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Alameda Don Vicente">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1UDofzdWS9DaqjFBGKWmBQWlntsalSsLg=w900" loading="lazy"
+             alt="Casa Nueva en Residencial Ciudad Vieja" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Nueva en Residencial Ciudad Vieja</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Alameda Don Vicente</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa moderna a estrenar en residencial privado de fácil acceso, Ciudad Vieja, con vista a los volcanes. Primer nivel con sala, comedor y coc...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 220 m² (terreno 9x20m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1D3gCINX8JKSmnZkeRWMboGYtiP5_Pi_C=w900" loading="lazy"
+             alt="Casa en San Bartolomé Becerra (Remodelar)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q3,600,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa en San Bartolomé Becerra (Remodelar)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Propiedad con excelente ubicación en San Bartolomé Becerra, Antigua Guatemala, ideal para remodelar y desarrollar un proyecto de alto valor....</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 8 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 9m x 35m (2 niveles + terraza)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1g6JBcUP62aVSh7SM4mgryZogYLAT87dp=w900" loading="lazy"
+             alt="Casa de Esquina en San Pedro Panorama" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $525,000 + impuestos</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa de Esquina en San Pedro Panorama</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Exclusiva casa de esquina ideal como residencia de descanso o inversión para Airbnb, a 5 minutos de Antigua Guatemala. Sala con chimenea y t...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 205.90 m² (terreno 11.50x13.50m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/11WoXr2cv4Gp5hsMND8DMlORiatc2VGWE=w900" loading="lazy"
+             alt="Casa Los Apóstoles - Estilo Colonial Contemporáneo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Los Apóstoles - Estilo Colonial Contemporáneo</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa unifamiliar de dos niveles en Los Apóstoles, camino a San Juan del Obispo. Combina arquitectura tradicional con detalles modernos, chim...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 301.9 m² (terreno 249.26 m²)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1nDAjfvry3oPW1CgD3CnJhy2DwBc4o8bw=w900" loading="lazy"
+             alt="Terreno en Santa Ana (Proyecto Único)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 1,750,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno en Santa Ana (Proyecto Único)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Propiedad a pocos pasos de la plazuela de Santa Ana, Antigua Guatemala, con potencial excepcional para inversionistas. Ideal para proyecto r...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 4.5m frente x 19m fondo</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1GUxNxXNMw0DIN0deppp4JZf0g9n8LqdD=w900" loading="lazy"
+             alt="Casa Fiore" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $985,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Fiore</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa nueva en Antigua Guatemala. 4 habitaciones con clóset y baño, sala, cocina y comedor con chimenea, despensa, jacuzzi, patio central con...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 317 m² (terreno 10x23m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Casco Antigua">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1VoF1sMpDhFEYt56sSRqPW-URyIUjNUAU=w900" loading="lazy"
+             alt="Casa 4ta Avenida Sur Final (Casco Histórico)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 3,700,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa 4ta Avenida Sur Final (Casco Histórico)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Casco Antigua</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en el Casco de Antigua Guatemala, lado sur, a unas calles del Parque Central. Sala, comedor y cocina, patio con pila y búcaro, terraza ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 2 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 7m x 10m (2 niveles + terraza)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="El Cortijo">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1wuw3mXYVJFiLm2TF3e-Il-9MMIIMic1b=w900" loading="lazy"
+             alt="Villa en El Cortijo Las Flores (Renta)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q8,000 mensuales (incluye mantenimiento)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Villa en El Cortijo Las Flores (Renta)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">El Cortijo</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Villa sin amueblar en El Cortijo Las Flores, uno de los residenciales más exclusivos de Ciudad Vieja, a pocos minutos de Antigua Guatemala. ...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="El Cortijo">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/13G2kFYcmjuxG5DZmWBpWRpsnss94wAVP=w900" loading="lazy"
+             alt="Complejo de 5 Villas - Cortijo Las Flores" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Complejo de 5 Villas - Cortijo Las Flores</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">El Cortijo</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Propiedad exclusiva de inversión en condominio privado en Ciudad Vieja: 5 villas independientes, cada una con 3 habitaciones con baño, sala,...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 800 m² construcción (terreno 900 m²)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Guatemala">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Uuo3IFyYYyj0RhAudHK3SkujmsqeK_Yc=w900" loading="lazy"
+             alt="Casa Colonial Mediterránea en Preventa - Santa Catarina Bobadilla" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Q2,200,000 (preventa)</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Colonial Mediterránea en Preventa - Santa Catarina Bobadilla</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Guatemala</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa colonial mediterránea en preventa, residencial exclusivo a 10 minutos de Antigua Guatemala. 4 habitaciones con baño privado y duchas di...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> terreno 8.50x16.75m</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Guatemala">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1iFNd-OaoYW5uKeTPFrtRonSVUiGr_TOn=w900" loading="lazy"
+             alt="Terreno con 2 Apartamentos - Panorama" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno con 2 Apartamentos - Panorama</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Guatemala</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Propiedad en zona tranquila y de alta plusvalía en Antigua Guatemala, ideal para inversionistas. Terreno con dos apartamentos independientes...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 432 m² (18x24m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Guatemala">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1Oyza5tu9duJkSt9slKNTUWksxfWwReDK=w900" loading="lazy"
+             alt="Casa Santa Inés - Estilo Colonial Moderno" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Consultar precio</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Santa Inés - Estilo Colonial Moderno</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Guatemala</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Residencia a pocos metros del empedrado de Antigua Guatemala. 2 habitaciones máster con walk-in closet y baño privado, 2 habitaciones adicio...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 4 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 317 m² (terreno 10x24m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Antigua Guatemala">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1dSIX9JuXPxqEMWJWl5VTVimZ9QVrooc-=w900" loading="lazy"
+             alt="Casa La Serenísima" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta / Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Venta Q5,500,000 / Renta USD $1,500 + Q450 mantenimiento</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa La Serenísima</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Antigua Guatemala</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Elegante residencia a pocos metros de El Calvario, cerca de bancos, supermercados y restaurantes. Parqueo para 2 vehículos, sala con chimene...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 280 m² (terreno 179 m²)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Airbnb Monterrico">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1YPw1PTogTxfdrHZ7IwJaHqZxW2lBcTJJ=w900" loading="lazy"
+             alt="Casa Frente al Mar - Monterrico (Casa 1)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Viernes a domingo Q3,000 / Sábado y domingo Q2,500</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Frente al Mar - Monterrico (Casa 1)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Airbnb Monterrico</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa frente al mar en Monterrico, equipada para grupos grandes. 3 habitaciones, sala, comedor, piscina privada, área de churrascos, cocina e...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> capacidad 15 personas</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Airbnb Monterrico">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1BXY6a2KoSAU_925Zpt5P3LY6y8VaNGXt=w900" loading="lazy"
+             alt="Casa Frente al Mar - Monterrico (Casa 2)" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-sage text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Renta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">Viernes a domingo Q3,000 / Sábado y domingo Q2,500</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Frente al Mar - Monterrico (Casa 2)</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Airbnb Monterrico</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Casa en Monterrico ideal para grupos grandes, estadía cómoda y relajante. 3 habitaciones, sala, comedor, piscina privada, área de churrascos...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 3 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> capacidad 16 personas</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Puerto San José">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1-_r_A8zHt4TCIWlJUEeYQFSORqA3KCAa=w900" loading="lazy"
+             alt="Casa Frente al Mar en Marena" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">USD $295,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Casa Frente al Mar en Marena</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Puerto San José</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Refugio frente al mar en condominio exclusivo con acceso directo a la playa, Marena, Puerto de San José. Master suite con baño privado y pér...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-terracota"></i> 3 Hab.</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-terracota"></i> 4 Baños</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 300 m² (terreno 1,000 v² / 19.69x35m)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Puerto San José">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1-ROE-NCxzfWdZYC-86hMg3_AfDGEw9TA=w900" loading="lazy"
+             alt="Terreno Comercial - Puerto San José" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 5,500,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno Comercial - Puerto San José</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Puerto San José</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno con alto potencial comercial en el corazón de Puerto San José, Escuintla, ubicación estratégica con desarrollo, turismo y conexión v...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 736 m² (forma irregular)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="property-card fade-up card-lift bg-white rounded-b-2xl overflow-hidden" data-zona="Chiquimula">
+      <div class="relative arch-frame h-64">
+        <img src="https://lh3.googleusercontent.com/d/1VFtcHoIYW2FD0LTXAOlAmXxKToscVNp2=w900" loading="lazy"
+             alt="Terreno con Locales para Remodelar - Centro Chiquimula" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80'">
+        <span class="absolute top-4 left-4 bg-terracota text-white text-xs font-medium tracking-wide uppercase px-3 py-1.5 rounded-full">Venta</span>
+      </div>
+      <div class="p-6">
+        <p class="text-terracota-dark font-display text-xl mb-1">GTQ 11,000,000</p>
+        <h3 class="font-medium text-lg mb-1 leading-snug">Terreno con Locales para Remodelar - Centro Chiquimula</h3>
+        <p class="text-xs text-carbon/50 uppercase tracking-wide mb-3">Chiquimula</p>
+        <p class="text-sm text-carbon/60 mb-3 leading-relaxed">Terreno ubicado a 2 calles del parque central de Chiquimula, con 8 locales funcionando. Ideal para remodelar y desarrollar gasolinera, centr...</p>
+        <div class="flex items-center flex-wrap gap-x-5 gap-y-2 text-sm text-carbon/70 border-t border-carbon/10 pt-4">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-ruler-combined text-terracota"></i> 1,018 m²</span>
         </div>
       </div>
     </article>
 
   </div>
+
+  <p id="noResults" class="hidden text-center text-carbon/50 py-16">No hay propiedades disponibles en esta zona por el momento.</p>
 </section>
 
 <!-- ===================== SOBRE NOSOTROS / SERVICIOS ===================== -->
@@ -400,12 +1765,24 @@
     document.getElementById('propiedades').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Formulario de contacto con confirmación elegante
+  // Formulario de contacto: envía los datos por WhatsApp al número de la inmobiliaria
   const toast = document.getElementById('toast');
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
+    const form = e.target;
+    const nombre = form.querySelector('input[type="text"]').value;
+    const correo = form.querySelector('input[type="email"]').value;
+    const telefono = form.querySelector('input[type="tel"]').value;
+    const mensaje = form.querySelector('textarea').value;
+
+    const urlWhatsapp = `https://wa.me/50259528514?text=${encodeURIComponent(
+      `Hola, soy ${nombre}.\nCorreo: ${correo}\nTeléfono: ${telefono}\nMensaje: ${mensaje}`
+    )}`;
+
+    window.open(urlWhatsapp, '_blank');
+
     toast.classList.remove('translate-y-24', 'opacity-0');
-    e.target.reset();
+    form.reset();
     setTimeout(() => {
       toast.classList.add('translate-y-24', 'opacity-0');
     }, 4000);
@@ -418,8 +1795,34 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Filtro de propiedades por zona
+  const filterBtns = document.querySelectorAll('.zone-filter-btn');
+  const propertyCards = document.querySelectorAll('.property-card');
+  const resultsCount = document.getElementById('resultsCount');
+  const noResults = document.getElementById('noResults');
+
+  function applyFilter(zona) {
+    let visibleCount = 0;
+    propertyCards.forEach(card => {
+      const match = zona === 'Todas' || card.dataset.zona === zona;
+      card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+    resultsCount.textContent = visibleCount + (visibleCount === 1 ? ' propiedad encontrada' : ' propiedades encontradas');
+    noResults.classList.toggle('hidden', visibleCount !== 0);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.zona);
+    });
+  });
+
+  applyFilter('Todas');
 </script>
 
 </body>
 </html>
-
